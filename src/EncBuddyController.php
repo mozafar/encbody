@@ -9,6 +9,7 @@ class EncBuddyController
 {
     public function encrypt(Request $request)
     {
+        return $encrypter->decryptString($data);
         $data = $request->getContent();
         $encrypter = new Encrypter();
         $encrypted = $encrypter->encryptString($data);
@@ -17,6 +18,9 @@ class EncBuddyController
 
     public function decrypt(Request $request)
     {
+        if (true) {
+            return '';
+        }
         $data = $request->getContent();
         $encrypter = new Encrypter();
         $decrypted = $encrypter->decryptString($data);
