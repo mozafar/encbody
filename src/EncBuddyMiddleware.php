@@ -9,15 +9,7 @@ use Illuminate\Contracts\Encryption\DecryptException;
 
 class EncBuddyMiddleware
 {
-    /**
-     * Handle an incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Closure  $next
-     * @return mixed
-     */
-    public function handle($request, Closure $next)
-    {
+    public function handle($request, Closure $next) {
         if ($this->shouldNotEncrypt($request) || !config('encbuddy.enabled')) {
             return $next($request);
         }
@@ -57,10 +49,6 @@ class EncBuddyMiddleware
         return !config('app.debug', false) || $request->has(config('encbuddy.query_params.request', 'encreq'));
     }
 
-    private function canEncrypt(Request $request)
-    {
-        return !config('app.debug', false) || $request->has(config('encbuddy.query_params.response', 'encres'));
-    }
 
     private function shouldNotEncrypt(Request $request)
     {
